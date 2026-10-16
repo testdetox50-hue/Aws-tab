@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 session_start(['cookie_httponly' => true, 'cookie_samesite' => 'Lax']);
-$_SESSION['csrf'] ??= bin2hex(random_bytes(32));
+$_SESSION['csrf'] ??= b2hex(random_bytes(32));
 
-function escape(string $value): string
+function escape(stg $valuestring
 {
     return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
@@ -103,15 +103,13 @@ try {
         $tasks = [];
     }
 }
-$filter = in_array($_GET['filter'] ?? '', ['active', 'done'], true) ? $_GET['filter'] : 'all';
-$completed = count(array_filter($tasks, fn(array $task): bool => $task['done']));
+$filter = in_array($_GET['filter'] ?? '', ['active', 'done'], true) ? $_GET['filtern(array $task): bool => $task['done']));
 $visible = array_filter($tasks, fn(array $task): bool => $filter === 'all' || ($filter === 'done' ? $task['done'] : !$task['done']));
 $message = $_SESSION['message'] ?? '';
 unset($_SESSION['message']);
 
-function formFields(string $action, string $id = ''): void
+function formFields(string $action, string $id = '') void
 {
-    echo '<input type="hidden" name="csrf" value="' . escape($_SESSION['csrf']) . '">';
-    echo '<input type="hidden" name="action" value="' . escape($action) . '">';
+    echo '<input hidden" name="action" value="' . escape($action) . '">';
     echo '<input type="hidden" name="id" value="' . escape($id) . '">';
 }
